@@ -5,13 +5,14 @@
 
 from pathlib import Path
 
-# from tkinter import *
+from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import simpledialog
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r".\Front-End\assets")
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\12244\Desktop\Git\itms448-groupproject\Front-End\assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -23,6 +24,23 @@ window = Tk()
 window.geometry("900x600")
 
 
+
+# MAIN APPLICATION
+def applicationGui():
+    window = Tk()
+    window.geometry("300x600")
+    canvas = Canvas(
+    window,
+    bg = "#FFFFFF",
+    height = 600,
+    width = 300,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+    return
+
+# LOGIN PAGE
 canvas = Canvas(
     window,
     bg = "#FFFFFF",
@@ -60,13 +78,13 @@ entry_bg_1 = canvas.create_image(
     375.5,
     image=entry_image_1
 )
-entry_1 = Entry(
+user = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
     highlightthickness=0
 )
-entry_1.place(
+user.place(
     x=53.0,
     y=358.0,
     width=217.0,
@@ -92,13 +110,13 @@ entry_bg_2 = canvas.create_image(
     438.5,
     image=entry_image_2
 )
-entry_2 = Entry(
+passwrd = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
     highlightthickness=0
 )
-entry_2.place(
+passwrd.place(
     x=53.0,
     y=421.0,
     width=217.0,
@@ -115,6 +133,20 @@ canvas.create_text(
     font=("IstokWeb Regular", 12 * -1)
 )
 
+def loginAuth():
+    if (user.get() == 'Admin' and passwrd.get() == 'Password'):
+        window.withdraw()
+        applicationGui()#change to page 2
+    else:
+        canvas.create_text(
+            105.0,
+            515.0,
+            anchor="nw",
+            text="Hint: Admin Password",
+            fill="#ff0000",
+            font=("IstokWeb Regular", 12 * -1)
+        )
+        
 #submit button and hover Effects
 submitButton = PhotoImage(
     file=relative_to_assets("button_1.png"))
@@ -122,7 +154,7 @@ button_1 = Button(
     image=submitButton,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"), #CHANGE THIS COMMAND TO SWITCH TO NEXT WINDOW
+    command= loginAuth, #CHANGE THIS COMMAND TO SWITCH TO NEXT WINDOW
     relief="flat"
 )
 button_1.place(
@@ -135,20 +167,20 @@ button_1.place(
 buttonHover_1 = PhotoImage(
     file=relative_to_assets("button_hover_1.png"))
 
-def button_1_hover(e):
+def button_1_hoverOn(e):
     button_1.config(
         image=buttonHover_1
     )
-def button_1_leave(e):
+def button_1_hoverOff(e):
     button_1.config(
         image=submitButton
     )
 
 #hover effect in action
-button_1.bind('<Enter>', button_1_hover)
-button_1.bind('<Leave>', button_1_leave)
+button_1.bind('<Enter>', button_1_hoverOn)
+button_1.bind('<Leave>', button_1_hoverOff)
 
-
-#perma code
+#perma code for window
 window.resizable(False, False)
 window.mainloop()
+
