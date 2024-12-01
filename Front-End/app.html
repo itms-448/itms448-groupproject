@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction History</title>
+    <link rel="stylesheet" href=".\css\style.css" />    
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div class="content">
+      <nav class="navbar">
+        <ul>
+          <li v-for="(page, index) in pages" :key="index">
+            <a 
+              class="navLinks"
+              :class="{active: activePage == index}"  
+              :href="page.link.url"
+              :title="'This link goes to the ${page.link.text} page'"
+              @click.prevent="activePage = index"
+              >{{page.link.text}}</a>
+          </li>
+        </ul>
+      </nav>
+      <h1>{{pages[activePage].pageTitle}}</h1>
+      <p>{{pages[activePage].pageContent}}</p>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data(){
+          return {
+            activePage: 0,
+            pages: [
+             {
+              link:{text:'History', url: 'app.html'},
+              pageTitle:'Transaction History',
+              pageContent:'This is your transaction history'
+             }, 
+             {
+              link:{text:'Invest', url: 'app.html'},
+              pageTitle:'Investments',
+              pageContent:'This is your investment history'
+             },
+             {
+              link:{text:'Exchange', url: 'app.html'},
+              pageTitle:'Currency Exchange',
+              pageContent:'This is your currency exchange history'
+             },
+             {
+              link:{text:'Budget', url: 'app.html'},
+              pageTitle:' Budgeting',
+              pageContent:'This is your budget'
+             },
+            ]
+          };
+        }
+      }).mount('body');
+    </script>
+  </body>
+</html>
