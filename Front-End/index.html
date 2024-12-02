@@ -3,26 +3,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href=".\css\style.css" />
-    <script async src=".\js\script.js"></script>
     <title>Finance Manager</title>
+    <script src="./js/script.js" ></script>
+
   </head>
   <body>
     <section class="content">
-      <form action="action_page.php" method="post">
+      <form action="action_page.php" method="post" id="login">
         <div class="warning">
           <p>For Demo Purposes Only: [Admin, Password]</p>
         </div>
 
         <div class="container">
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required />
+          <input id="uname" type="text" placeholder="Enter Username" name="uname" required />
 
           <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required />
+          <input id="psw" type="password" placeholder="Enter Password" name="psw" required />
 
-          <button type="submit">Login</button>
-        </div>
-      </form>
+          <button type="button" value="Login" id="submit" onclick="validate()"> Login</button>       </form>
+      
     </section>
+
   </body>
 </html>
