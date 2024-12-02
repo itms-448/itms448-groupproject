@@ -7,7 +7,7 @@
   border: 3px solid black;
 }
 
-
+/* Navbar Styles */
 .navbar {
   width: 100%;
   margin: auto;
@@ -103,4 +103,21 @@ button:hover {
 		display: block;
 		float: none;
 	}
+}
+
+/* APP STYLES */
+#pagecontent{
+	text-align: center;
+}
+
+.infoContent{
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+
+}
+.infoCard hr{
+	width: 70%;
+
 }
