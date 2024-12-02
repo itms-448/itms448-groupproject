@@ -110,14 +110,23 @@ button:hover {
 	text-align: center;
 }
 
+.infoCard{
+	padding-bottom: 15px;
+}
 .infoContent{
 	width: 90%;
 	margin: auto;
 	display: flex;
 	justify-content: space-between;
-
 }
 .infoCard hr{
 	width: 70%;
+	opacity: 0.7;
+}
 
+.deposit{
+	color: green;
+}
+.withdraw{
+	color: crimson;
 }

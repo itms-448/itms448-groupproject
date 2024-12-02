@@ -24,14 +24,51 @@
       </nav>
 
       <page-viewer id="pagecontent" :page="pages[activePage]"></page-viewer>
-      <div v-for="(page, index) in pages" :key="index" 
-          class="infoCard" v-show="activePage !== 0" 
-        <div class="infoContent">
-          <p><b>Transaction</b></p>
-          <p>{{Math.floor(Math.random() * 12) + 1}}/{{Math.floor(Math.random() * 30) + 1}}/2024</p>
-          <p>${{Math.floor(Math.random() * 375)}}</p>
+      <div class="transaction History">
+         <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>01:06 p.m. </p>
+            <p class="deposit">$86.78</p>
+          </div>
+          <hr class="solid">
         </div>
-        <hr class="solid">
+
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>05:17 p.m. </p>
+            <p class="deposit">$30.00</p>
+          </div>
+          <hr class="solid">
+        </div>
+
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>12:00 a.m. </p>
+            <p class="withdraw">$25.70</p>
+          </div>
+          <hr class="solid">
+        </div>
+
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>10:22 a.m. </p>
+            <p class="deposit">$16.90</p>
+          </div>
+          <hr class="solid">
+        </div>
+
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>03:44 p.m.</p>
+            <p class="withdraw">$93.00</p>
+          </div>
+          <hr class="solid">
+        </div>
       </div>
     </section>
 
