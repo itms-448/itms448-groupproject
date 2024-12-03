@@ -1,0 +1,54 @@
+Queries for setting up DB:
+CREATE TABLE categories ( 
+category_id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, type ENUM('income', 'expense') NOT NULL, -- Use ENUM for strict type categorization created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+
+CREATE TABLE transactions ( 
+transaction_id SERIAL PRIMARY KEY, user_id INT NOT NULL, -- Foreign key to users table amount DECIMAL(10, 2) NOT NULL, category_id INT NOT NULL, -- Foreign key to categories table date DATE NOT NULL, description TEXT, FOREIGN KEY (category_id) REFERENCES categories (category_id), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+Queries for selecting transaction based on type(income/expense):
+SELECT c.type, SUM(t.amount) AS total 
+FROM transactions t 
+JOIN categories c ON t.category_id = c.category_id 
+GROUP BY c.type;
+ Sorting transactions into the proper category:
+
+
+
+
+
+
+
+
+CREATE TABLE category_keywords (
+    keyword_id SERIAL PRIMARY KEY,
+    category_id INT NOT NULL, -- Foreign key to categories table
+    keyword VARCHAR(255) NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+);
+INSERT INTO category_keywords (category_id, keyword) 
+VALUES (1, 'salary'), (1, 'bonus'), (2, 'grocery'), (2, 'supermarket'), (3, 'rent'), (3, 'lease'), (4, 'electricity'), (4, 'internet'), (5, 'movie'), (5, 'concert');
+UPDATE transactions t 
+SET category_id = ( SELECT c.category_id FROM category_keywords ck JOIN categories c ON ck.category_id = c.category_id WHERE LOWER(t.description) LIKE CONCAT('%', ck.keyword, '%') LIMIT 1 ) 
+WHERE t.category_id IS NULL; -- Update only uncategorized transactions
+
+
+CREATE OR REPLACE FUNCTION categorize_transaction() 
+RETURNS TRIGGER AS $$ 
+BEGIN 
+UPDATE transactions 
+SET category_id = ( 
+SELECT c.category_id 
+FROM category_keywords ck 
+JOIN categories c ON ck.category_id = c.category_id 
+WHERE LOWER(NEW.description) LIKE CONCAT('%', ck.keyword, '%') 
+LIMIT 1 ) 
+WHERE transaction_id = NEW.transaction_id; 
+RETURN NEW; 
+END; 
+$$ LANGUAGE plpgsql; 
+CREATE TRIGGER categorize_on_insert 
+AFTER INSERT ON transactions 
+FOR EACH ROW 
+EXECUTE FUNCTION categorize_transaction();
