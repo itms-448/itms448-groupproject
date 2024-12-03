@@ -2,13 +2,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transaction History</title>
+    <title>Financing App</title>
     <link rel="stylesheet" href=".\css\style.css" />
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <section class="content">
-      <nav class="navbar">
+    <nav class="navbar">
         <ul>
           <li v-for="(page, index) in pages" :key="index">
             <a
@@ -23,54 +22,121 @@
         </ul>
       </nav>
 
+
+    <div class="content">
       <page-viewer id="pagecontent" :page="pages[activePage]"></page-viewer>
-      <div class="transaction History">
+
+      <!-- Add conditional statements to div classes to show content based on page index -->
+      <div class="tabs" id="transactions">
+        <h3 class="sectionTitle">Transaction History</h3>
          <div class="infoCard">
           <div class="infoContent">
             <p><b>Transaction</b></p>
             <p>01:06 p.m. </p>
-            <p class="deposit">$86.78</p>
+            <p style="color: green;">$86.78</p>
+          </div>
+          <hr class="solid">
+         </div>
+         <div class="infoCard">
+          <div class="infoContent">
+            <p><b>Transaction</b></p>
+            <p>10:06 a.m. </p>
+            <p style="color: crimson;">$06.78</p>
           </div>
           <hr class="solid">
         </div>
-
-        <div class="infoCard">
+        <div class="infoCard">              
           <div class="infoContent">
             <p><b>Transaction</b></p>
-            <p>05:17 p.m. </p>
-            <p class="deposit">$30.00</p>
-          </div>
-          <hr class="solid">
-        </div>
-
-        <div class="infoCard">
-          <div class="infoContent">
-            <p><b>Transaction</b></p>
-            <p>12:00 a.m. </p>
-            <p class="withdraw">$25.70</p>
-          </div>
-          <hr class="solid">
-        </div>
-
-        <div class="infoCard">
-          <div class="infoContent">
-            <p><b>Transaction</b></p>
-            <p>10:22 a.m. </p>
-            <p class="deposit">$16.90</p>
-          </div>
-          <hr class="solid">
-        </div>
-
-        <div class="infoCard">
-          <div class="infoContent">
-            <p><b>Transaction</b></p>
-            <p>03:44 p.m.</p>
-            <p class="withdraw">$93.00</p>
+            <p>01:06 p.m. </p>              
+            <p style="color: green;">$86.78</p>
           </div>
           <hr class="solid">
         </div>
       </div>
-    </section>
+           
+      <div class="tabs" id="investments">
+        <h3 class="sectionTitle">Investments</h3>
+       <div class="infoCard">
+          <div class="infoContent">
+            <p><b>S&P 500 (INX)</b></p>
+            <p>01:06 p.m. </p>
+            <p style="color: green;">+14.77 (+0.24%)</p>
+          </div>
+          <hr class="solid">
+        </div>
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>DOW</b></p>
+            <p>06:04 p.m. </p>
+            <p style="color: crimson;">-29.%</p>
+          </div>
+          <hr class="solid">
+        </div>
+        <div class="infoCard">
+          <div class="infoContent">
+            <p><b>NASDAQ</b></p>
+            <p>09:40 p.m. </p>
+            <p style="color: green;">+ +0.97%</p>
+          </div>
+          <hr class="solid">
+        </div>
+      </div>
+
+      <div class="tabs" id="Exchange">
+        <h3 class="sectionTitle">Currency Exchange</h3>
+       <div class="infoCard">
+          <div class="infoContent">
+            <p>$1.00 USD</p>
+            <p>$0.95 EUR</p>
+          </div>
+          <hr class="solid">
+        </div>
+        <div class="infoCard">
+          <div class="infoContent">
+            <p>ƒ1.000 AWG</p>
+            <p>SFr.0.4952 CHF</p>
+          </div>
+          <hr class="solid">
+        </div>
+        <div class="infoCard">
+          <div class="infoContent">
+            <p>Kz1.000 AOA</p>
+            <p>€0.001033 EUR</p>
+          </div>
+          <hr class="solid">
+        </div>
+      </div>
+
+      <div class="tabs" id="Budget">
+        <h3 class="sectionTitle">Budget History</h3>
+         <div class="infoCard">
+          <div class="infoContent">
+            <p>Car Payment</p>
+            <p>24%</p>
+            <p>$150.0</p>
+          </div>
+          <hr class="solid">
+         </div>
+         <div class="infoCard">
+          <div class="infoContent">
+            <p>Groceries</p>
+            <p>10%</p>
+            <p>$85.70</p>
+          </div>
+          <hr class="solid">
+        </div>
+        <div class="infoCard">              
+          <div class="infoContent">
+            <p>Utilities</p>
+            <p>6%</p>
+            <p>$35.42</p>
+          </div>
+          <hr class="solid">
+        </div>
+      </div>
+
+    </div>
 
     <!-- VUE APP -->
     <script>
@@ -79,6 +145,11 @@
           return {
             activePage: 0,
             pages: [
+              {
+                link: { text: "Home", url: "app.html" },
+                pageTitle: "Financing App",
+                pageContent: "Making finance easier.",
+              },
               {
                 link: { text: "History", url: "app.html" },
                 pageTitle: "Transaction History",
@@ -120,5 +191,6 @@
 
       app.mount("body");
     </script>
+    
   </body>
 </html>
