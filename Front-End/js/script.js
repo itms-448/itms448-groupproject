@@ -22,38 +22,38 @@ function validate() {
     }
 }
 
-import React, { useState } from 'react';
-import axios from 'axios';
+// import React, { useState } from 'react';
+// import axios from 'axios';
 
 
-function AddTransaction() {
-    const [formData, setFormData] = useState({
-        user_id: '',
-        amount: '',
-        category_id: '',
-        description: '',
-        date: ''
-    });
+// function AddTransaction() {
+//     const [formData, setFormData] = useState({
+//         user_id: '',
+//         amount: '',
+//         category_id: '',
+//         description: '',
+//         date: ''
+//     });
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/add_transaction', formData);
-            alert('Transaction added successfully!');
-        } catch (error) {
-            console.error('Error adding transaction:', error);
-        }
-    };
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         try {
+//             const response = await axios.post('/add_transaction', formData);
+//             alert('Transaction added successfully!');
+//         } catch (error) {
+//             console.error('Error adding transaction:', error);
+//         }
+//     };
 
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="user_id" placeholder="User ID" onChange={(e) => setFormData({...formData, user_id: e.target.value})} />
-            <input type="number" name="amount" placeholder="Amount" onChange={(e) => setFormData({...formData, amount: e.target.value})} />
-            <input type="text" name="category_id" placeholder="Category ID" onChange={(e) => setFormData({...formData, category_id: e.target.value})} />
-            <textarea name="description" placeholder="Description" onChange={(e) => setFormData({...formData, description: e.target.value})} />
-            <input type="date" name="date" onChange={(e) => setFormData({...formData, date: e.target.value})} />
-            <button type="submit">Add Transaction</button>
-        </form>
-    );
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <input type="text" name="user_id" placeholder="User ID" onChange={(e) => setFormData({...formData, user_id: e.target.value})} />
+//             <input type="number" name="amount" placeholder="Amount" onChange={(e) => setFormData({...formData, amount: e.target.value})} />
+//             <input type="text" name="category_id" placeholder="Category ID" onChange={(e) => setFormData({...formData, category_id: e.target.value})} />
+//             <textarea name="description" placeholder="Description" onChange={(e) => setFormData({...formData, description: e.target.value})} />
+//             <input type="date" name="date" onChange={(e) => setFormData({...formData, date: e.target.value})} />
+//             <button type="submit">Add Transaction</button>
+//         </form>
+//     );
